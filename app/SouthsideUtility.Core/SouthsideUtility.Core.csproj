@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\common\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="CastleWindsor\ServiceLocator.cs" />
     <Compile Include="DesignByContract\Exceptions\AssertionException.cs" />
     <Compile Include="DesignByContract\Exceptions\ClientErrorCode.cs" />
