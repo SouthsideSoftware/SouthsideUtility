@@ -47,7 +47,11 @@ task pullCurrent -Description "Does a git pull" {
     git pull
 }
 
-task buildDist -Description "Update version. Build appication. Runs tests.  Builds Nuget packages" -depends version, build, publish {
+task buildDist -Description "Update version. Build appication. Runs tests.  Builds Nuget packages" -depends build, createArtifacts {
+}
+
+task buildDistAndPublish -Description "Update version. Build appication. Runs tests. Builds Nuget packages. Deploys to MyGet." -depends buildDist, publish {
+
 }
 
 task cleanBuildOutput -Description "Cleans the BuildOutput folder" {
@@ -70,9 +74,13 @@ Task versionReset -Description "Returns the version of the assemblies to 0.1.0.0
   Reset-CommonAssemblyInfoFile
 }
 
-Task publish -Description "Publish artifacts" {
+Task createArtifacts -Description "Create artifacts" {
   $dllOutputsToPublish | % { Copy-DllOutputs $_ }
   $nugetPackagesToPublish | % {Create-NugetPackage $_ }
+}
+
+Task publish -Description "Publish NuGet Packages" {
+  $nugetPackagesToPublish | % { Publish-ToMyGet $_ }
 }
 
 task ? -Description "Helper to display task info" {
@@ -109,7 +117,6 @@ function Update-CommonAssemblyInfoFile ([string] $version, [string]$revision) {
 }
 
 function Version-Nuspec ([string]$project) {
-  $ns =
   [string] $nuspecFilePath = Join-Path -Path ".\nuspec" -ChildPath ($project + ".nuspec") -Resolve
   Write-Host $nuspecFilePath
   [xml]$nuspecFile = Get-Content $nuspecFilePath
@@ -128,6 +135,11 @@ function Copy-DllOutputs ([string] $projectName) {
   [string] $path = Join-Path (Join-Path "app/$projectName" "bin") $configuration
   [string] $destPath = Join-Path $buildOutputDir $projectName
   Copy-Item $path $destPath -recurse
+}
+
+function Publish-ToMyGet ([string] $package) {
+  [string] $nugetFilePath = Join-Path -Path $nugetOutputDir -ChildPath ($package + "." + $version + "." + $revision + ".nupkg") -Resolve
+  & .nuget\nuget push $nugetFilePath -s https://www.myget.org/F/southside/
 }
 
 function Create-NugetPackage ([string] $projectName) {

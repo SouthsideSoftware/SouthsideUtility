@@ -6,6 +6,9 @@
     <version>0.1.0.0</version>
     <authors>Tom Cabanski</authors>
     <owners>Southside Software, LLC</owners>
+    <licenseUrl>https://github.com/SouthsideSoftware/SouthsideUtility/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/SouthsideSoftware/SouthsideUtility</projectUrl>
+    <copyright>(C) Southside Software, LLC 2014, 2015</copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Library of useful functions used by Southside Software, LLC</description>
     <summary>Library of useful functions used by Southside Software, LLC</summary>
