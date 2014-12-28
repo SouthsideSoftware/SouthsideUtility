@@ -7,6 +7,8 @@ properties {
   $buildOutputDir = "./BuildOutput"
   $nugetOutputDir = Join-Path $buildOutputDir "nuget"
   $testAssemblies = @()
+  $dllOutputsToPublish = @("SouthsideUtility.Core")
+  $nugetPackagesToPublish = @("SouthsideUtility")
 }
 
 task default -depends build
@@ -69,10 +71,8 @@ Task versionReset -Description "Returns the version of the assemblies to 0.1.0.0
 }
 
 Task publish -Description "Publish artifacts" {
-  Copy-DllOutputs "Autobahn.Fulfillment.Messages"
-  Create-NugetPackage "Autobahn.Fulfillment.Messages"
-  Copy-DllOutputs "Autobahn.Notification.Messages"
-  Create-NugetPackage "Autobahn.Notification.Messages"
+  $dllOutputsToPublish | % { Copy-DllOutputs $_ }
+  $nugetPackagesToPublish | % {Create-NugetPackage $_ }
 }
 
 task ? -Description "Helper to display task info" {
@@ -109,10 +109,13 @@ function Update-CommonAssemblyInfoFile ([string] $version, [string]$revision) {
 }
 
 function Version-Nuspec ([string]$project) {
+  $ns =
   [string] $nuspecFilePath = Join-Path -Path ".\nuspec" -ChildPath ($project + ".nuspec") -Resolve
   Write-Host $nuspecFilePath
   [xml]$nuspecFile = Get-Content $nuspecFilePath
-  $versionNode = $nuspecFile.SelectSingleNode("//version")
+  $ns = New-Object System.Xml.XmlNamespaceManager($nuspecFile.NameTable)
+  $ns.AddNamespace("ns", "http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd")
+  $versionNode = $nuspecFile.SelectSingleNode("//ns:version", $ns)
   if ($versionNode -eq $null) {
     throw "Cannot find version node in nuspec package for $nuspecFile"
   }
