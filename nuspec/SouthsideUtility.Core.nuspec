@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>SouthsideUtility.Core</id>
-    <title>Library of useful functions used by Southside Software, LLC</title>
-    <version>0.1.0.0</version>
+    <title>SouthsideUtility.Core</title>
+    <version>0.2.0.0</version>
     <authors>Tom Cabanski</authors>
     <owners>Southside Software, LLC</owners>
     <licenseUrl>https://github.com/SouthsideSoftware/SouthsideUtility/blob/master/LICENSE</licenseUrl>
