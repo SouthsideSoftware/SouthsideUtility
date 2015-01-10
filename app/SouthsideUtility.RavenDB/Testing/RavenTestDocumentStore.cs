@@ -22,7 +22,7 @@ namespace SouthsideUtility.RavenDB.Testing
             {
                 Store = new EmbeddableDocumentStore {RunInMemory = true};
                 // Force queries to wait for indexes to catch up. Unit Testing only :P
-                (Store as DocumentStore).RegisterListener(new NoStaleQueriesListener());
+                (Store as EmbeddableDocumentStore).RegisterListener(new NoStaleQueriesListener());
                 Store.Initialize();
             }
             else
