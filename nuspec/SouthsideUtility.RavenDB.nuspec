@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>SouthsideUtility.RavenDB</id>
+    <title>Library of useful RavenDB helpers used by Southside Software, LLC</title>
+    <version>0.1.0.0</version>
+    <authors>Tom Cabanski</authors>
+    <owners>Southside Software, LLC</owners>
+    <licenseUrl>https://github.com/SouthsideSoftware/SouthsideUtility/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/SouthsideSoftware/SouthsideUtility</projectUrl>
+    <copyright>(C) Southside Software, LLC 2014, 2015</copyright>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Library of useful RavenDB helpers used by Southside Software, LLC</description>
+    <summary>Library of useful RavenDB helpers used by Southside Software, LLC</summary>
+    <dependencies>
+      <dependency id="RavenDB.Client" version="3.0" />
+      <dependency id="RavenDB.Embedded" version="3.0" />
+      <dependency id="SouthsideUtility.Core" version="0.1.0.0" />
+    </dependencies>
+    <tags>Southside utility</tags>
+  </metadata>
+  <files>
+    <file src="..\BuildOutput\SouthsideUtility.RavenDB\SouthsideUtility.RavenDB.*" target="lib\net45" />
+  </files>
+</package>

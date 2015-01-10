@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>SouthsideUtility</id>
+    <id>SouthsideUtility.Core</id>
     <title>Library of useful functions used by Southside Software, LLC</title>
     <version>0.1.0.0</version>
     <authors>Tom Cabanski</authors>
@@ -18,6 +18,6 @@
     <tags>Southside utility</tags>
   </metadata>
   <files>
-    <file src="..\BuildOutput\SouthsideUtility.Core\SouthsideUtility.*.*" target="lib\net45" />
+    <file src="..\BuildOutput\SouthsideUtility.Core\SouthsideUtility.Core.*" target="lib\net45" />
   </files>
 </package>

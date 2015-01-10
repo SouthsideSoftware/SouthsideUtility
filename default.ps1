@@ -7,8 +7,8 @@ properties {
   $buildOutputDir = "./BuildOutput"
   $nugetOutputDir = Join-Path $buildOutputDir "nuget"
   $testAssemblies = @()
-  $dllOutputsToPublish = @("SouthsideUtility.Core")
-  $nugetPackagesToPublish = @("SouthsideUtility")
+  $dllOutputsToPublish = @("SouthsideUtility.Core","SouthsideUtility.RavenDB")
+  $nugetPackagesToPublish = @("SouthsideUtility.Core","SouthsideUtility.RavenDB")
 }
 
 task default -depends build
