@@ -14,7 +14,7 @@
     <summary>Library of useful RavenDB helpers used by Southside Software, LLC</summary>
     <dependencies>
       <dependency id="RavenDB.Client" version="3.0" />
-      <dependency id="RavenDB.Embedded" version="3.0" />
+      <dependency id="RavenDB.Database" version="3.0" />
       <dependency id="SouthsideUtility.Core" version="0.1.0.0" />
     </dependencies>
     <tags>Southside utility</tags>
