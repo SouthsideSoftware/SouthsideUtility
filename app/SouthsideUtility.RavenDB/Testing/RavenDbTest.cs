@@ -7,9 +7,9 @@ namespace SouthsideUtility.RavenDB.Testing
     {
         private RavenTestDocumentStore noStaleQueryWrapper;
 
-        protected internal RavenDbTest()
+        protected internal RavenDbTest(bool ravenInMemory = true)
         {
-            noStaleQueryWrapper = new RavenTestDocumentStore();
+            noStaleQueryWrapper = new RavenTestDocumentStore(ravenInMemory);
         }
 
         /// <summary>
