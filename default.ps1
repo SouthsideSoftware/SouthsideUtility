@@ -1,7 +1,7 @@
 properties {
   $revision =  if ("$env:BUILD_NUMBER".length -gt 0) { "$env:BUILD_NUMBER" } else { "0" }
   $inTeamCity = if ("$env:BUILD_NUMBER".length -gt 0) { $true } else { $false }
-  $version = "0.7.0"
+  $version = "0.8.0"
   $configuration = "Debug"
   $platform = "Any CPU"
   $buildOutputDir = "./BuildOutput"
@@ -37,7 +37,7 @@ task test -Description "Runs tests" {
 }
 
 Task compile -Description "Build application only" {
-		exec {.nuget\nuget restore}
+	exec {.nuget\nuget restore}
     exec { msbuild $sln_file /t:rebuild /m:4 /p:VisualStudioVersion=12.0 "/p:Configuration=$configuration" "/p:Platform=$platform" }
 }
 
