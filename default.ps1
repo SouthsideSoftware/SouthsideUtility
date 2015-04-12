@@ -1,7 +1,7 @@
 properties {
   $revision =  if ("$env:BUILD_NUMBER".length -gt 0) { "$env:BUILD_NUMBER" } else { "0" }
   $inTeamCity = if ("$env:BUILD_NUMBER".length -gt 0) { $true } else { $false }
-  $version = "0.13.0"
+  $version = "0.15.0"
   $configuration = "Debug"
   $platform = "Any CPU"
   $buildOutputDir = "./BuildOutput"
@@ -9,6 +9,7 @@ properties {
   $testAssemblies = @()
   $dllOutputsToPublish = @("SouthsideUtility.Core","SouthsideUtility.RavenDB")
   $nugetPackagesToPublish = @("SouthsideUtility.Core","SouthsideUtility.RavenDB")
+  $nugetPublishUrl = "https://www.myget.org/F/southside/"
 }
 
 task default -depends build
@@ -139,7 +140,7 @@ function Copy-DllOutputs ([string] $projectName) {
 
 function Publish-ToMyGet ([string] $package) {
   [string] $nugetFilePath = Join-Path -Path $nugetOutputDir -ChildPath ($package + "." + $version + "." + $revision + ".nupkg") -Resolve
-  & .nuget\nuget push $nugetFilePath -s https://www.myget.org/F/southside/
+  & .nuget\nuget push $nugetFilePath -s $nugetPublishUrl
 }
 
 function Create-NugetPackage ([string] $projectName) {
