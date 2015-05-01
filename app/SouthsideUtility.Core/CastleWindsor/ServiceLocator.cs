@@ -9,5 +9,14 @@ namespace SouthsideUtility.Core.CastleWindsor
             Container = new WindsorContainer();
         }
         public static IWindsorContainer Container { get; private set; }
+
+        public static void ClearContainer()
+        {
+            if (Container != null)
+            {
+                Container.Dispose();
+            }
+            Container = new WindsorContainer();
+        }
     }
 }
