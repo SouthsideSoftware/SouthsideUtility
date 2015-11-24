@@ -1,7 +1,7 @@
 properties {
   $revision =  if ("$env:BUILD_NUMBER".length -gt 0) { "$env:BUILD_NUMBER" } else { "0" }
   $inTeamCity = if ("$env:BUILD_NUMBER".length -gt 0) { $true } else { $false }
-  $version = "0.17.0"
+  $version = "0.18.0"
   $configuration = "Debug"
   $platform = "Any CPU"
   $buildOutputDir = "./BuildOutput"
@@ -194,7 +194,7 @@ function Get-NunitVersion {
   #Find the correct version of NUnit by looking at the referenced
   #package in the packages.config file of the solution
   [xml]$packages = Get-Content ".\.nuget\Packages.config"
-  $server = $packages.SelectSingleNode("//package[@id='NUnit.Runners']")
+  $server = $packages.SelectSingleNode("//package[@id='NUnit.Console']")
   $version = $server.GetAttribute("version")
 
   return $version
