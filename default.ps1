@@ -1,14 +1,14 @@
 properties {
   $revision =  if ("$env:BUILD_NUMBER".length -gt 0) { "$env:BUILD_NUMBER" } else { "0" }
   $inTeamCity = if ("$env:BUILD_NUMBER".length -gt 0) { $true } else { $false }
-  $version = "0.18.0"
+  $version = "0.19.0"
   $configuration = "Debug"
   $platform = "Any CPU"
   $buildOutputDir = "./BuildOutput"
   $nugetOutputDir = Join-Path $buildOutputDir "nuget"
   $testAssemblies = @()
-  $dllOutputsToPublish = @("SouthsideUtility.Core","SouthsideUtility.RavenDB")
-  $nugetPackagesToPublish = @("SouthsideUtility.Core","SouthsideUtility.RavenDB")
+  $dllOutputsToPublish = @("SouthsideUtility.Core","SouthsideUtility.RavenDB", "SouthsideUtility.Testing")
+  $nugetPackagesToPublish = @("SouthsideUtility.Core","SouthsideUtility.RavenDB", "SouthsideUtility.Testing")
   $nugetPublishUrl = "https://www.myget.org/F/southside/"
 }
 
