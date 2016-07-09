@@ -1,7 +1,7 @@
 properties {
   $revision =  if ("$env:BUILD_NUMBER".length -gt 0) { "$env:BUILD_NUMBER" } else { "0" }
   $inTeamCity = if ("$env:BUILD_NUMBER".length -gt 0) { $true } else { $false }
-  $version = "0.19.0"
+  $version = "0.20.0"
   $configuration = "Debug"
   $platform = "Any CPU"
   $buildOutputDir = "./BuildOutput"
@@ -145,8 +145,8 @@ function Publish-ToMyGet ([string] $package) {
 
 function Create-NugetPackage ([string] $projectName) {
   Version-Nuspec $projectName
-  [string] $input = Join-Path -Path "nuspec" -ChildPath ($projectName + ".nuspec")
-  & .nuget\nuget pack $input -OutputDirectory $nugetOutputDir
+  [string] $source = Join-Path -Path "nuspec" -ChildPath ($projectName + ".nuspec")
+  & .nuget\nuget pack $source -OutputDirectory $nugetOutputDir
   if ($LastExitCode -ne 0) { throw "Failed to create nuget package for $projectName"}
 }
 
